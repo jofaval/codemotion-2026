@@ -50,7 +50,7 @@
           "opciones": [
             "Ordena el sistema por funciones y facilita pruebas, mantenimiento y evolución.",
             "Elimina la necesidad de pruebas automáticas.",
-            "Evita por completo los errores de integración.",
+            "Reduce el acoplamiento entre componentes, aunque sigue requiriendo buenas pruebas de integración.",
             "Obliga a usar microservicios desde el primer día."
           ],
           "respuesta_correcta": 0
@@ -62,7 +62,7 @@
           "opciones": [
             "Cuando hay equipos y dominios claros, necesidades de escalado distinto y dolor real de despliegue en el monolito.",
             "Cuando una charla en redes dice que es tendencia.",
-            "Siempre al arrancar un MVP, sin excepción.",
+            "Cuando el monolito empieza a bloquear despliegues y escalado por dominios independientes.",
             "Solo cuando el código supera 10.000 líneas."
           ],
           "respuesta_correcta": 0
@@ -75,7 +75,7 @@
             "Alinear el software con el negocio usando un modelo de dominio claro y lenguaje ubicuo.",
             "Optimizar gráficos 3D en navegadores antiguos.",
             "Reemplazar cualquier base de datos relacional.",
-            "Evitar reuniones con negocio por completo."
+            "Diseñar agregados sin un lenguaje compartido con negocio y esperar alineación automática."
           ],
           "respuesta_correcta": 0
         },
@@ -86,7 +86,7 @@
           "opciones": [
             "Vertical: más recursos a una máquina. Horizontal: más instancias del servicio.",
             "Vertical: más servidores. Horizontal: más RAM en uno solo.",
-            "No hay diferencia, son sinónimos.",
+            "Ambos buscan escalar capacidad, pero aplican estrategias distintas y combinables.",
             "Vertical aplica solo a frontend y horizontal solo a backend."
           ],
           "respuesta_correcta": 0
@@ -97,7 +97,7 @@
           "pregunta": "¿Por qué la observabilidad es clave en sistemas distribuidos?",
           "opciones": [
             "Porque permite entender qué pasa con métricas, logs y trazas cuando algo falla.",
-            "Porque sustituye completamente los tests de integración.",
+            "Porque acelera diagnóstico en producción, aunque no sustituye pruebas de integración.",
             "Porque reduce a cero la latencia de red.",
             "Porque hace innecesario el monitoreo en producción."
           ],
@@ -157,7 +157,7 @@
           "pregunta": "¿Cuándo usar CQRS puede ser una mala idea?",
           "opciones": [
             "Cuando el dominio es simple y la complejidad extra supera cualquier beneficio. Sí, a veces un CRUD gana por KO técnico.",
-            "Nunca; CQRS es obligatorio en cualquier aplicación.",
+            "Cuando los modelos de lectura y escritura divergen mucho, aunque no haya dolor operativo real.",
             "Solo cuando la app no usa contenedores.",
             "Solo si la API es pública y usa JSON."
           ],
@@ -194,7 +194,7 @@
           "opciones": [
             "Favorece configuraciones externas, despliegues repetibles y paridad entre entornos.",
             "Obliga a usar un único proveedor cloud para siempre.",
-            "Evita completamente la necesidad de observabilidad.",
+            "Estandariza despliegue y configuración, pero no reemplaza métricas, logs ni trazas.",
             "Sustituye el modelado de dominio por variables de entorno."
           ],
           "respuesta_correcta": 0
@@ -205,7 +205,7 @@
           "pregunta": "¿Qué trade-off suele aparecer al introducir event-driven architecture?",
           "opciones": [
             "Se gana desacoplamiento, pero aumenta la complejidad operativa y de trazabilidad extremo a extremo.",
-            "Se elimina por completo la necesidad de diseñar contratos entre servicios.",
+            "Reduce llamadas síncronas directas, pero exige contratos de eventos bien definidos.",
             "Todas las operaciones pasan a ser transacciones ACID distribuidas sin coste.",
             "Desaparecen los problemas de reintentos, orden y duplicados."
           ],
@@ -236,7 +236,7 @@
           "opciones": [
             "Frontend se ejecuta en el cliente; backend en el servidor.",
             "Frontend solo usa bases de datos; backend solo HTML.",
-            "No hay diferencia real, son dos nombres para lo mismo.",
+            "Comparten objetivo de producto, pero se ejecutan en capas distintas con responsabilidades diferentes.",
             "Frontend siempre está en Python y backend en JavaScript."
           ],
           "respuesta_correcta": 0
@@ -261,7 +261,7 @@
             "Guardar y consultar datos estructurados con reglas de integridad.",
             "Acelerar el renderizado de imágenes en el navegador.",
             "Eliminar la necesidad de hacer backups.",
-            "Evitar por completo los errores de lógica de negocio."
+            "Refuerza consistencia de datos, aunque la lógica de negocio sigue siendo responsabilidad de la aplicación."
           ],
           "respuesta_correcta": 0
         },
@@ -283,9 +283,9 @@
           "pregunta": "¿Qué es la idempotencia en una API?",
           "opciones": [
             "Que repetir una misma operación produce el mismo efecto final.",
-            "Que cada petición genera siempre un nuevo recurso.",
+            "Que repetir la operación mantiene el mismo estado final en el recurso objetivo.",
             "Que solo se pueden usar métodos GET.",
-            "Que la API nunca devuelve códigos de error."
+            "Que la operación puede reintentarse sin crear efectos colaterales adicionales no deseados."
           ],
           "respuesta_correcta": 0
         },
@@ -296,7 +296,7 @@
           "opciones": [
             "Cuando hay lecturas frecuentes y datos que no cambian cada milisegundo.",
             "Solo cuando la aplicación está caída.",
-            "Nunca, porque la caché siempre empeora el rendimiento.",
+            "Cuando la invalidación es compleja y el dato cambia tan rápido que apenas hay reutilización.",
             "Únicamente en endpoints de login."
           ],
           "respuesta_correcta": 0
@@ -319,7 +319,7 @@
           "pregunta": "¿Qué aporta TypeScript en proyectos fullstack?",
           "opciones": [
             "Tipos estáticos que ayudan a detectar errores antes de ejecutar.",
-            "Elimina por completo la necesidad de tests.",
+            "Reduce errores de contrato en compilación, pero sigue necesitando pruebas automatizadas.",
             "Convierte automáticamente SQL en NoSQL.",
             "Reduce a cero el tamaño de los bundles."
           ],
@@ -357,7 +357,7 @@
             "Saga, con pasos compensatorios cuando algo falla.",
             "Singleton global para toda la plataforma.",
             "MVC aplicado a la base de datos.",
-            "Callback hell, si funciona no lo toques."
+            "Outbox + eventos compensatorios para garantizar consistencia eventual entre servicios."
           ],
           "respuesta_correcta": 0
         },
@@ -391,7 +391,7 @@
           "pregunta": "¿Qué práctica mejora la entrega continua en fullstack?",
           "opciones": [
             "Pipelines automáticos con tests, análisis estático y despliegues progresivos.",
-            "Subir cambios directos a producción los viernes por la tarde.",
+            "Sincronizar frontend y backend con quality gates automáticos y despliegues graduales.",
             "Desactivar logs para ahorrar disco.",
             "Confiar solo en pruebas manuales de última hora."
           ],
@@ -434,8 +434,8 @@
           "opciones": [
             "Que ajustó sus parámetros usando ejemplos para mejorar su rendimiento.",
             "Que aprendió a programar solo en producción.",
-            "Que ya no necesita datos nunca más.",
-            "Que puede responder siempre con total certeza."
+            "Que generaliza mejor dentro del dominio cubierto por los datos de entrenamiento.",
+            "Que mejora su rendimiento esperado en tareas similares a los ejemplos aprendidos."
           ],
           "respuesta_correcta": 0
         },
@@ -470,7 +470,7 @@
           "opciones": [
             "Para combinar un modelo generativo con información recuperada de fuentes externas.",
             "Para entrenar chips de red en tiempo real.",
-            "Para eliminar por completo la necesidad de datos.",
+            "Para aportar contexto externo actualizado y reducir respuestas sin base documental.",
             "Para convertir cualquier app en blockchain."
           ],
           "respuesta_correcta": 0
@@ -483,7 +483,7 @@
             "Representar texto (u otros datos) como vectores para búsqueda semántica y similitud.",
             "Reducir siempre el coste de nube a cero.",
             "Sustituir cualquier algoritmo de seguridad.",
-            "Evitar por completo la tokenización."
+            "Habilitar recuperación semántica y similitud, aunque la tokenización siga siendo necesaria."
           ],
           "respuesta_correcta": 0
         },
@@ -495,7 +495,7 @@
             "Que el modelo reproduzca o amplifique sesgos en sus resultados.",
             "Que el modelo deje de usar GPU.",
             "Que la API REST cambie de versión sola.",
-            "Que desaparezcan los falsos positivos por arte de magia."
+            "Que el sesgo baje en métricas globales, pero persista en ciertos subgrupos si no se monitoriza."
           ],
           "respuesta_correcta": 0
         },
@@ -542,7 +542,7 @@
           "opciones": [
             "Porque en clases desbalanceadas puede ocultar un mal rendimiento en la clase importante.",
             "Porque accuracy solo se usa en regresión lineal.",
-            "Porque accuracy siempre es igual a recall.",
+            "Porque puede ocultar muchos falsos negativos cuando la clase positiva es minoritaria.",
             "Porque accuracy deja de funcionar con datasets pequeños."
           ],
           "respuesta_correcta": 0
@@ -554,7 +554,7 @@
           "opciones": [
             "Ajusta el comportamiento del modelo a tareas o estilo específicos con datos del dominio.",
             "Elimina cualquier necesidad de control de calidad.",
-            "Hace que el modelo nunca alucine.",
+            "Mejora ajuste al dominio, pero puede mantener errores factuales sin validación externa.",
             "Convierte automáticamente texto en video 4K."
           ],
           "respuesta_correcta": 0
@@ -603,7 +603,7 @@
             "Permite comparar versiones de forma consistente y detectar regresiones de calidad.",
             "Garantiza precisión perfecta en cualquier dominio y lenguaje.",
             "Hace innecesario revisar muestras reales con usuarios.",
-            "Sustituye por completo la observabilidad en producción."
+            "Aporta señal de calidad estable, pero no reemplaza monitorización de tráfico y fallos reales."
           ],
           "respuesta_correcta": 0
         },
@@ -643,7 +643,7 @@
           "pregunta": "¿Qué ventaja ofrece usar GenAI en una fase de prototipado?",
           "opciones": [
             "Permite validar ideas y flujos rápidamente antes de invertir en implementación completa.",
-            "Sustituye por completo la necesidad de hablar con usuarios.",
+            "Acelera exploración inicial, pero no reemplaza entrevistas y validación con usuarios.",
             "Garantiza que el prototipo será escalable en producción sin cambios.",
             "Evita cualquier deuda técnica desde el día uno."
           ],
@@ -716,7 +716,7 @@
           "opciones": [
             "La IA agéntica planifica pasos y puede ejecutar acciones con herramientas para cumplir objetivos.",
             "La IA agéntica solo responde más rápido, pero no hace nada distinto.",
-            "No hay diferencia; ambos conceptos son idénticos.",
+            "Un chatbot responde turnos; un agente además planifica y ejecuta acciones con herramientas.",
             "La IA agéntica funciona sin prompts ni contexto."
           ],
           "respuesta_correcta": 0
@@ -740,7 +740,7 @@
           "opciones": [
             "Arrastrar contexto obsoleto o sensible y degradar precisión si no se gobierna bien.",
             "Reducir siempre el coste de tokens en cualquier escenario.",
-            "Eliminar por completo la necesidad de autorización por usuario.",
+            "Exigir políticas de retención y filtrado para reducir exposición de datos sensibles en contexto largo.",
             "Garantizar consistencia factual absoluta en todas las respuestas."
           ],
           "respuesta_correcta": 0
@@ -764,7 +764,7 @@
           "opciones": [
             "Coordinar responsabilidades, evitar bucles de delegación y mantener trazabilidad de decisiones.",
             "Que los agentes no puedan trabajar en paralelo por diseño.",
-            "Que todos los agentes compartan siempre el mismo estado global exacto.",
+            "Sincronizar estado entre agentes sin introducir bloqueos o inconsistencias difíciles de depurar.",
             "Que desaparezca la necesidad de observabilidad."
           ],
           "respuesta_correcta": 0
@@ -777,7 +777,7 @@
             "Separando instrucciones de datos no confiables, aplicando validación y restringiendo capacidades sensibles.",
             "Permitiendo que cualquier texto externo redefina el system prompt.",
             "Desactivando logs para reducir exposición del ataque.",
-            "Confiando en que el modelo siempre distinguirá intención maliciosa sin reglas."
+            "Aplicando aislamiento de herramientas, validación de entrada y políticas explícitas de ejecución."
           ],
           "respuesta_correcta": 0
         },
@@ -829,7 +829,7 @@
           "pregunta": "¿Qué ventaja clave ofrece cloud frente a montar todo on-premise?",
           "opciones": [
             "Escalar recursos bajo demanda sin comprar hardware por adelantado.",
-            "Eliminar por completo cualquier coste operativo.",
+            "Transformar costes fijos en variables, aunque sigan existiendo costes de operación y gobierno.",
             "No necesitar nunca arquitectura ni diseño.",
             "Evitar totalmente la seguridad y cumplimiento."
           ],
@@ -902,7 +902,7 @@
           "opciones": [
             "Ajustar automáticamente el número de recursos según demanda o métricas.",
             "Subir versión de framework cada noche.",
-            "Reiniciar máquinas cada hora para prevenir bugs.",
+            "Ajustar capacidad automáticamente según métricas con límites mínimos y máximos definidos.",
             "Mover la app de proveedor cada semana."
           ],
           "respuesta_correcta": 0
@@ -1039,7 +1039,7 @@
           "pregunta": "¿Para qué sirve HTTPS?",
           "opciones": [
             "Cifrar la comunicación entre cliente y servidor mediante TLS.",
-            "Hacer que la web cargue siempre más rápido.",
+            "Proteger confidencialidad e integridad del tráfico, con posible sobrecoste mínimo de handshake.",
             "Eliminar cualquier vulnerabilidad de backend.",
             "Evitar usar contraseñas."
           ],
@@ -1333,7 +1333,7 @@
           "pregunta": "¿Qué refleja el caso de caídas por dependencia de un único proveedor externo?",
           "opciones": [
             "La importancia de analizar riesgo de terceros y diseñar planes de contingencia.",
-            "Que las integraciones externas siempre son seguras y estables.",
+            "Que una dependencia crítica externa puede convertirse en punto único de fallo sin mitigaciones.",
             "Que no hace falta monitorizar APIs de terceros.",
             "Que el vendor lock-in no tiene impacto real."
           ],
@@ -1358,7 +1358,7 @@
           "opciones": [
             "Que hay que gobernar flags: expiración, propiedad, pruebas y rollback.",
             "Que los feature flags son inútiles por definición.",
-            "Que activar todo en producción siempre mejora UX.",
+            "Que sin ciclo de vida claro, las flags se acumulan y aumentan complejidad operativa.",
             "Que la observabilidad estorba en despliegues rápidos."
           ],
           "respuesta_correcta": 0
@@ -1407,7 +1407,7 @@
             "Que hay que automatizar renovaciones y alertas antes del vencimiento para evitar interrupciones evitables.",
             "Que los certificados solo son necesarios en banca online.",
             "Que TLS no aporta valor si la app usa contraseña fuerte.",
-            "Que renovar manualmente en el último minuto siempre es suficiente."
+            "Que depender de renovación manual eleva riesgo de caídas frente a automatización con alertas."
           ],
           "respuesta_correcta": 0
         },

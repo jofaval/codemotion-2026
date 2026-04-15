@@ -67,6 +67,7 @@
       font-size: 1.8rem;
       margin-bottom: .25rem;
       background: var(--gradient);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -286,6 +287,15 @@
 
     .feedback.correct { color: var(--success); }
     .feedback.wrong { color: var(--danger); }
+
+    .feedback-detail {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.4;
+      min-height: 2.4rem;
+      margin-bottom: 1rem;
+    }
 
     /* ── Results screen ── */
     .results-card {
@@ -551,6 +561,65 @@
         return SECTION_EMOJIS[id] || "📌";
       }
 
+      const COMIC_OPTION_RATE = 0.2;
+      const COMIC_OPTIONS = {
+        artesania_software_arquitectura: [
+          "Pedirle al diagrama que se autocompile por motivación.",
+          "Agregar más cajas y flechas hasta que parezca arte moderno."
+        ],
+        fullstack_programacion: [
+          "Reiniciar el router y confiar en la magia del stack.",
+          "Actualizar a la última versión en viernes a las 19:00 para más emoción."
+        ],
+        ia: [
+          "Preguntarle al modelo si hoy se siente inspirado.",
+          "Ajustar hiperparámetros con una ruleta y café."
+        ],
+        genai_ia_agentica: [
+          "Dar permisos de admin al agente y desearle suerte.",
+          "Resolver todo con prompts en mayúsculas."
+        ],
+        cloud: [
+          "Escalar el servidor soplando fuerte al ventilador.",
+          "Reducir latencia moviendo el portátil más cerca del router."
+        ],
+        seguridad: [
+          "Cambiar la contraseña a '1234' para recordarla fácil.",
+          "Confiar en que nadie mirará los logs en producción."
+        ],
+        anecdotas_curiosas_it: [
+          "Compilar con fe y apagar/encender hasta que funcione.",
+          "Nombrar la variable `solucionDefinitivaFinalV3`."
+        ],
+      };
+
+      function maybeInjectComicOption(question, options, correctText) {
+        if (Math.random() >= COMIC_OPTION_RATE) return options;
+        const comicPool = COMIC_OPTIONS[question.seccionId] || [];
+        if (comicPool.length === 0) return options;
+
+        const availableComic = comicPool.filter(opt => !options.includes(opt));
+        if (availableComic.length === 0) return options;
+
+        const comicOption = availableComic[Math.floor(Math.random() * availableComic.length)];
+        const wrongIndexes = options
+          .map((opt, idx) => ({ opt, idx }))
+          .filter(({ opt }) => opt !== correctText)
+          .map(({ idx }) => idx);
+
+        if (wrongIndexes.length === 0) return options;
+
+        const replaceIndex = wrongIndexes[Math.floor(Math.random() * wrongIndexes.length)];
+        const updated = [...options];
+        updated[replaceIndex] = comicOption;
+        return updated;
+      }
+
+      function buildCorrectRationale(q) {
+        const correctText = q.shuffledOptions[q.correctIndex];
+        return `La correcta es: “${correctText}”. Es la opción más precisa y completa en términos técnicos.`;
+      }
+
       /* ═══════════════════════════════════════════
          Prepare quiz
          ═══════════════════════════════════════════ */
@@ -588,10 +657,14 @@
         // For each question, rebalance options and track correct index
         quizQuestions = picked.map(q => {
           const { shuffledOptions, correctIndex } = prepareOptionsForQuestion(q);
+          const correctText = shuffledOptions[correctIndex];
+          const optionsWithComic = maybeInjectComicOption(q, shuffledOptions, correctText);
+          const finalOptions = shuffle(optionsWithComic);
+          const finalCorrectIndex = finalOptions.indexOf(correctText);
           return {
             ...q,
-            shuffledOptions,
-            correctIndex,
+            shuffledOptions: finalOptions,
+            correctIndex: finalCorrectIndex,
           };
         });
 
@@ -714,6 +787,7 @@
             </div>
 
             <p class="feedback" id="feedback"></p>
+            <p class="feedback-detail" id="feedbackDetail"></p>
             <div style="text-align:center">
               <button class="btn btn-primary" id="nextBtn" style="display:none">
                 ${currentIndex < quizQuestions.length - 1 ? "Siguiente" : "Ver resultados"}
@@ -751,12 +825,14 @@
           btn.classList.add("correct");
           $("#feedback").textContent = "¡Correcto! 🎉";
           $("#feedback").className = "feedback correct";
+          $("#feedbackDetail").textContent = buildCorrectRationale(q);
         } else {
           btn.classList.add("wrong");
           // Highlight correct
           document.querySelector(`.option-btn[data-idx="${q.correctIndex}"]`).classList.add("correct");
           $("#feedback").textContent = "Incorrecto 😕";
           $("#feedback").className = "feedback wrong";
+          $("#feedbackDetail").textContent = buildCorrectRationale(q);
         }
 
         document.querySelectorAll(".option-btn").forEach(b => b.classList.add("answered"));
