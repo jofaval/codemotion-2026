@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Tecnológico – Codemotion 2026</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #0070AD;
+      --primary-dark: #005A8C;
+      --primary-light: #12ABDB;
+      --accent: #2DCCD3;
+      --gradient: linear-gradient(135deg, #0070AD, #12ABDB, #2DCCD3);
+      --success: #1B8C3A;
+      --danger: #D42A2A;
+      --bg: #ffffff;
+      --surface: #f4f7fa;
+      --surface-hover: #e8eef4;
+      --text: #1A2B49;
+      --text-muted: #5A6F8A;
+      --border: #d4dde8;
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Ubuntu', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+      border-top: 4px solid;
+      border-image: var(--gradient) 1;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 0 auto 1rem;
+    }
+
+    .logo {
+      display: block;
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: .25rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-size: .95rem;
+    }
+
+    /* ── Setup screen ── */
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .section-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .section-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem .75rem;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      user-select: none;
+      text-align: center;
+    }
+
+    .section-card:hover { background: var(--surface-hover); }
+    .section-card.selected { border-color: var(--primary); background: rgba(0,112,173,.08); }
+
+    .section-card input[type="checkbox"] {
+      accent-color: var(--primary);
+      width: 1.15rem;
+      height: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .section-card .info { flex: 1; }
+    .section-card .info strong { display: block; font-size: .9rem; line-height: 1.3; }
+    .section-card .info span { font-size: .75rem; color: var(--text-muted); }
+
+    .config-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .config-row label {
+      font-size: .95rem;
+      color: var(--text-muted);
+    }
+
+    .config-row input[type="number"] {
+      width: 70px;
+      padding: .45rem .6rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .75rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      color: #fff;
+    }
+
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--gradient); }
+    .btn-primary:hover { filter: brightness(.92); }
+    .btn-primary:disabled { opacity: .45; cursor: not-allowed; }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 2px solid var(--border); }
+    .btn-secondary:hover { background: var(--surface-hover); }
+
+    .btn-block { width: 100%; }
+
+    .error-msg {
+      color: var(--danger);
+      font-size: .85rem;
+      margin-bottom: .75rem;
+      min-height: 1.2rem;
+    }
+
+    /* ── Quiz screen ── */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: var(--surface);
+      border-radius: 3px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient);
+      border-radius: 3px;
+      transition: width .4s ease;
+    }
+
+    .question-counter {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .85rem;
+      margin-bottom: .5rem;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: .75rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+    }
+
+    .badge-difficulty.facil { background: #d4f5dc; color: #14622b; }
+    .badge-difficulty.media { background: #fef3cd; color: #7a5d0e; }
+    .badge-difficulty.dificil { background: #fdd; color: #a11; }
+
+    .badge-category {
+      background: rgba(0,112,173,.1);
+      color: var(--primary);
+    }
+
+    .question-text {
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .options-list {
+      display: grid;
+      gap: .6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .option-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: .9rem 1.1rem;
+      color: var(--text);
+      font-size: .95rem;
+      line-height: 1.45;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .option-btn:hover:not(.answered) {
+      border-color: var(--primary);
+      background: var(--surface-hover);
+    }
+
+    .option-btn.correct {
+      border-color: var(--success);
+      background: rgba(27,140,58,.1);
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: rgba(212,42,42,.08);
+    }
+
+    .option-btn.answered { cursor: default; }
+
+    .feedback {
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      min-height: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .feedback.correct { color: var(--success); }
+    .feedback.wrong { color: var(--danger); }
+
+    /* ── Results screen ── */
+    .results-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .score-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 6px solid transparent;
+      background-image: linear-gradient(var(--surface), var(--surface)), var(--gradient);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .score-circle small {
+      font-size: .85rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .results-card h2 { margin-bottom: .5rem; }
+    .results-card p { color: var(--text-muted); margin-bottom: 1.25rem; }
+
+    .results-actions {
+      display: flex;
+      gap: .75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── History ── */
+    .history-section {
+      margin-top: 2.5rem;
+    }
+
+    .history-section h3 {
+      margin-bottom: .75rem;
+      font-size: 1.05rem;
+    }
+
+    .history-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .85rem;
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: .55rem .7rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .history-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .history-empty {
+      color: var(--text-muted);
+      font-size: .9rem;
+    }
+
+    .clear-history {
+      margin-top: .75rem;
+      background: none;
+      border: none;
+      color: var(--danger);
+      cursor: pointer;
+      font-size: .8rem;
+      text-decoration: underline;
+    }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 8000;
+      animation: fadeIn .2s ease;
+    }
+
+    .modal {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      width: 90%;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 12px 40px rgba(0,0,0,.2);
+      position: relative;
+    }
+
+    .modal h3 {
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: var(--text);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: .75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-sm {
+      padding: .5rem 1.25rem;
+      font-size: .85rem;
+    }
+
+    .btn-history {
+      margin-top: 1.5rem;
+    }
+
+    /* ── Capgemini branding ── */
+    .powered-by {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: .8rem;
+      color: var(--text-muted);
+      letter-spacing: .02em;
+    }
+
+    .powered-by img {
+      height: 22px;
+      width: auto;
+      object-fit: contain;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+
+    .powered-by:hover img {
+      opacity: 1;
+    }
+
+    /* ── Quiz screen vertical centering ── */
+    .quiz-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100dvh - 4rem);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in { animation: fadeIn .35s ease both; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    (() => {
+      /* ═══════════════════════════════════════════
+         State
+         ═══════════════════════════════════════════ */
+      const STORAGE_KEY = "quiz_codemotion_history";
+      let data = null;               // parsed JSON
+      let selectedSections = [];      // section ids
+      let numQuestions = 7;
+      let quizQuestions = [];         // prepared questions
+      let currentIndex = 0;
+      let score = 0;
+      let answered = false;
+
+      /* ═══════════════════════════════════════════
+         Helpers
+         ═══════════════════════════════════════════ */
+      const $ = (sel) => document.querySelector(sel);
+      const app = () => $("#app");
+
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function variantLength(text) {
+        const clean = text.trim().replace(/\s+/g, " ");
+        const roll = Math.random();
+        if (roll < 0.45) return clean;
+
+        if (roll > 0.9 && clean.length > 85) {
+          const short = clean.split(",")[0].trim();
+          if (short.length >= 35) return short.endsWith(".") ? short : `${short}.`;
+        }
+
+        if (roll < 0.75) {
+          return clean.replace(/\.$/, "") + " en la práctica.";
+        }
+
+        return clean.replace(/\.$/, "") + ", en contextos reales de producto.";
+      }
+
+      function plausibleFromCorrect(correctText) {
+        const base = correctText.trim().replace(/\.$/, "");
+        const variants = [
+          `${base}, pero únicamente si todo permanece en un único servicio.`,
+          `${base}, aunque suele aplicarse solo en escenarios muy acotados.`,
+          `${base}, siempre que no haya cambios frecuentes en producción.`
+        ];
+        return variants[Math.floor(Math.random() * variants.length)];
+      }
+
+      const TRUE_BUT_OFF_TOPIC = [
+        "Versionar APIs y monitorizar en producción son buenas prácticas de ingeniería.",
+        "La comunicación clara entre negocio y tecnología reduce errores de implementación.",
+        "Automatizar pruebas y despliegues suele mejorar la estabilidad del producto.",
+        "La documentación técnica útil acelera el onboarding de nuevos miembros del equipo."
+      ];
+
+      function prepareOptionsForQuestion(q) {
+        const correct = q.opciones[q.respuesta_correcta];
+        const wrong = q.opciones.filter((_, idx) => idx !== q.respuesta_correcta);
+        const adjustedWrong = [...wrong];
+
+        if (adjustedWrong.length && Math.random() < 0.35) {
+          const idx = Math.floor(Math.random() * adjustedWrong.length);
+          adjustedWrong[idx] = plausibleFromCorrect(correct);
+        }
+
+        if (adjustedWrong.length && Math.random() < 0.28) {
+          const idx = Math.floor(Math.random() * adjustedWrong.length);
+          adjustedWrong[idx] = TRUE_BUT_OFF_TOPIC[Math.floor(Math.random() * TRUE_BUT_OFF_TOPIC.length)];
+        }
+
+        const preparedCorrect = variantLength(correct);
+        const preparedWrong = adjustedWrong.map(variantLength);
+        const shuffledOptions = shuffle([preparedCorrect, ...preparedWrong]);
+        const correctIndex = shuffledOptions.indexOf(preparedCorrect);
+
+        return { shuffledOptions, correctIndex };
+      }
+
+      function loadHistory() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+        catch { return []; }
+      }
+
+      function saveAttempt(entry) {
+        const history = loadHistory();
+        history.push(entry);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+      }
+
+      function clearHistory() {
+        localStorage.removeItem(STORAGE_KEY);
+        renderSetup();
+      }
+
+      function sectionTitleById(id) {
+        const sec = data.secciones.find(s => s.id === id);
+        return sec ? sec.titulo : id;
+      }
+
+      const SECTION_EMOJIS = {
+        artesania_software_arquitectura: "🏛️",
+        fullstack_programacion: "💻",
+        ia: "🤖",
+        cloud: "☁️",
+        seguridad: "🔒",
+        anecdotas_curiosas_it: "🎲",
+      };
+
+      function sectionEmoji(id) {
+        return SECTION_EMOJIS[id] || "📌";
+      }
+
+      /* ═══════════════════════════════════════════
+         Prepare quiz
+         ═══════════════════════════════════════════ */
+      function prepareQuiz() {
+        // Pool from selected sections
+        let pool = [];
+        for (const sec of data.secciones) {
+          if (selectedSections.includes(sec.id)) {
+            pool.push(...sec.preguntas.map(q => ({ ...q, seccionId: sec.id })));
+          }
+        }
+
+        // Balanced pick: ~50% difícil, ~50% fácil+media (adjusted to pool availability)
+        const hard = shuffle(pool.filter(q => q.dificultad === "dificil"));
+        const easyMed = shuffle(pool.filter(q => q.dificultad !== "dificil"));
+
+        const targetHard = Math.min(Math.ceil(numQuestions / 2), hard.length);
+        const targetEasyMed = Math.min(numQuestions - targetHard, easyMed.length);
+        // If one bucket fell short, fill from the other
+        const fromHard = hard.slice(0, targetHard);
+        const fromEasyMed = easyMed.slice(0, targetEasyMed);
+        let picked = [...fromHard, ...fromEasyMed];
+        // Fill remaining if one side had fewer questions
+        const remaining = numQuestions - picked.length;
+        if (remaining > 0) {
+          const usedIds = new Set(picked.map(q => q.id));
+          const leftover = shuffle(pool.filter(q => !usedIds.has(q.id)));
+          picked = picked.concat(leftover.slice(0, remaining));
+        }
+        picked = shuffle(picked);
+
+        // For each question, rebalance options and track correct index
+        quizQuestions = picked.map(q => {
+          const { shuffledOptions, correctIndex } = prepareOptionsForQuestion(q);
+          return {
+            ...q,
+            shuffledOptions,
+            correctIndex,
+          };
+        });
+
+        currentIndex = 0;
+        score = 0;
+        answered = false;
+      }
+
+      /* ═══════════════════════════════════════════
+         Render: Setup screen
+         ═══════════════════════════════════════════ */
+      function renderSetup() {
+        selectedSections = [];
+        const sections = data.secciones;
+        app().innerHTML = `
+          <div class="quiz-screen fade-in" style="text-align:center">
+            <img src="./codemotion-logo.png" alt="Logo Codemotion" class="logo" />
+            <h1>Quiz Tecnológico</h1>
+            <p class="subtitle">Codemotion 2026 — Pon a prueba tus conocimientos</p>
+
+            <div class="section-grid" id="sectionGrid">
+              ${sections.map(s => `
+                <div class="section-card ${selectedSections.includes(s.id) ? "selected" : ""}" data-id="${s.id}">
+                  <input type="checkbox" ${selectedSections.includes(s.id) ? "checked" : ""} />
+                  <div class="info">
+                    <strong>${sectionEmoji(s.id)} ${s.titulo}</strong>
+                    <span>${s.preguntas.length} preguntas diferentes</span>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+
+            <div class="config-row">
+              <label for="numQ">Número de preguntas:</label>
+              <input type="number" id="numQ" min="1" max="90" value="${numQuestions}" />
+            </div>
+
+            <p class="error-msg" id="setupError"></p>
+            <button class="btn btn-primary btn-block" id="startBtn">Comenzar quiz</button>
+
+            <div style="text-align:center">
+              <button class="btn btn-secondary btn-history" id="historyBtn">📋 Historial de intentos (${loadHistory().length})</button>
+            </div>
+
+            <div class="powered-by">
+              <span>Powered by</span>
+              <img src="./logo.png" alt="Capgemini" />
+              <span>Capgemini</span>
+            </div>
+          </div>
+        `;
+
+        // Events
+        document.querySelectorAll(".section-card").forEach(card => {
+          const cb = card.querySelector("input[type=checkbox]");
+          // Prevent checkbox from toggling on its own (the handler below manages it)
+          cb.addEventListener("click", (e) => {
+            e.preventDefault();
+          });
+          card.addEventListener("click", () => {
+            const id = card.dataset.id;
+            if (selectedSections.includes(id)) {
+              selectedSections = selectedSections.filter(x => x !== id);
+              card.classList.remove("selected");
+              cb.checked = false;
+            } else {
+              selectedSections.push(id);
+              card.classList.add("selected");
+              cb.checked = true;
+            }
+          });
+        });
+
+        $("#startBtn").addEventListener("click", () => {
+          numQuestions = parseInt($("#numQ").value, 10) || 7;
+          if (selectedSections.length === 0) {
+            $("#setupError").textContent = "Selecciona al menos una sección.";
+            return;
+          }
+          // Check pool size
+          let poolSize = 0;
+          for (const sec of data.secciones) {
+            if (selectedSections.includes(sec.id)) poolSize += sec.preguntas.length;
+          }
+          if (numQuestions > poolSize) {
+            $("#setupError").textContent = `Solo hay ${poolSize} preguntas disponibles en las secciones elegidas.`;
+            return;
+          }
+          prepareQuiz();
+          renderQuestion();
+        });
+
+        $("#historyBtn").addEventListener("click", showHistoryModal);
+      }
+
+      /* ═══════════════════════════════════════════
+         Render: Question
+         ═══════════════════════════════════════════ */
+      function renderQuestion() {
+        const q = quizQuestions[currentIndex];
+        const progress = ((currentIndex) / quizQuestions.length) * 100;
+
+        app().innerHTML = `
+          <div class="quiz-screen fade-in">
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width:${progress}%"></div>
+            </div>
+            <p class="question-counter">Pregunta ${currentIndex + 1} de ${quizQuestions.length}</p>
+            <div class="badge-row">
+              <span class="badge badge-category">${sectionEmoji(q.seccionId)} ${sectionTitleById(q.seccionId)}</span>
+              <span class="badge badge-difficulty ${q.dificultad}">${q.dificultad}</span>
+            </div>
+            <p class="question-text">${q.pregunta}</p>
+
+            <div class="options-list" id="optionsList">
+              ${q.shuffledOptions.map((opt, i) => `
+                <button class="option-btn" data-idx="${i}">${opt}</button>
+              `).join("")}
+            </div>
+
+            <p class="feedback" id="feedback"></p>
+            <div style="text-align:center">
+              <button class="btn btn-primary" id="nextBtn" style="display:none">
+                ${currentIndex < quizQuestions.length - 1 ? "Siguiente" : "Ver resultados"}
+              </button>
+            </div>
+          </div>
+        `;
+
+        answered = false;
+
+        document.querySelectorAll(".option-btn").forEach(btn => {
+          btn.addEventListener("click", () => handleAnswer(btn));
+        });
+
+        $("#nextBtn").addEventListener("click", () => {
+          currentIndex++;
+          if (currentIndex < quizQuestions.length) {
+            renderQuestion();
+          } else {
+            finishQuiz();
+          }
+        });
+      }
+
+      function handleAnswer(btn) {
+        if (answered) return;
+        answered = true;
+
+        const idx = parseInt(btn.dataset.idx, 10);
+        const q = quizQuestions[currentIndex];
+        const isCorrect = idx === q.correctIndex;
+
+        if (isCorrect) {
+          score++;
+          btn.classList.add("correct");
+          $("#feedback").textContent = "¡Correcto! 🎉";
+          $("#feedback").className = "feedback correct";
+        } else {
+          btn.classList.add("wrong");
+          // Highlight correct
+          document.querySelector(`.option-btn[data-idx="${q.correctIndex}"]`).classList.add("correct");
+          $("#feedback").textContent = "Incorrecto 😕";
+          $("#feedback").className = "feedback wrong";
+        }
+
+        document.querySelectorAll(".option-btn").forEach(b => b.classList.add("answered"));
+        $("#nextBtn").style.display = "inline-flex";
+      }
+
+      /* ═══════════════════════════════════════════
+         Render: Results
+         ═══════════════════════════════════════════ */
+      function finishQuiz() {
+        // Save to localStorage
+        const sectionLabels = selectedSections.map(sectionTitleById).join(", ");
+        saveAttempt({
+          timestamp: Date.now(),
+          aciertos: score,
+          total: quizQuestions.length,
+          secciones: sectionLabels,
+        });
+
+        const pct = Math.round((score / quizQuestions.length) * 100);
+        let message = "";
+        if (pct === 100) message = "¡Perfecto! Eres una máquina 🤖";
+        else if (pct >= 70) message = "¡Muy bien! Dominas el tema 💪";
+        else if (pct >= 50) message = "¡Buen intento! No está nada mal 👏";
+        else message = "¡Gracias por participar! Cada pregunta es una oportunidad de aprender 🧠";
+
+        app().innerHTML = `
+          <div class="quiz-screen fade-in">
+            <img src="./codemotion-logo.png" alt="Logo Codemotion" class="logo" />
+            <h1>Resultados</h1>
+            <p class="subtitle">Has completado el quiz</p>
+
+            <div class="results-card">
+              <div class="score-circle">
+                ${score}/${quizQuestions.length}
+                <small>${pct}%</small>
+              </div>
+              <h2>${message}</h2>
+              <p>Secciones: ${sectionLabels}</p>
+
+              <div class="results-actions">
+                <button class="btn btn-primary" id="homeBtn">Volver a la Home</button>
+                <button class="btn btn-secondary" id="historyBtn">📋 Historial</button>
+              </div>
+            </div>
+
+            <div class="powered-by">
+              <span>Powered by</span>
+              <img src="./logo.png" alt="Capgemini" />
+              <span>Capgemini</span>
+            </div>
+
+          </div>
+        `;
+
+        $("#homeBtn").addEventListener("click", renderSetup);
+        $("#historyBtn").addEventListener("click", showHistoryModal);
+
+        if (pct === 100) launchConfetti();
+      }
+
+      /* ═══════════════════════════════════════════
+         Confetti 🎊
+         ═══════════════════════════════════════════ */
+      function launchConfetti() {
+        const canvas = document.createElement("canvas");
+        canvas.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999";
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext("2d");
+        let W, H;
+        function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+        resize();
+        window.addEventListener("resize", resize);
+
+        const colors = ["#0070AD","#12ABDB","#2DCCD3","#1B8C3A","#FFD700","#FF6B6B","#A855F7","#FF9F43","#E91E63","#00E676","#FFEA00","#FF3D00"];
+        const shapes = ["rect","circle","star","ribbon"];
+        const pieces = [];
+
+        function spawnBurst(count, originX, originY, spread) {
+          for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * spread + 2;
+            pieces.push({
+              x: originX,
+              y: originY,
+              w: Math.random() * 12 + 5,
+              h: Math.random() * 8 + 3,
+              color: colors[Math.floor(Math.random() * colors.length)],
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed - Math.random() * 4,
+              rot: Math.random() * 360,
+              rv: (Math.random() - 0.5) * 18,
+              opacity: 1,
+              shape: shapes[Math.floor(Math.random() * shapes.length)],
+              wobble: Math.random() * Math.PI * 2,
+              wobbleSpeed: Math.random() * 0.15 + 0.05,
+            });
+          }
+        }
+
+        // Initial massive burst from multiple points
+        spawnBurst(250, W / 2, H * 0.3, 10);
+        spawnBurst(150, W * 0.2, 0, 6);
+        spawnBurst(150, W * 0.8, 0, 6);
+
+        // Cannon shots from bottom corners
+        spawnBurst(120, 0, H, 12);
+        spawnBurst(120, W, H, 12);
+
+        // Delayed waves
+        setTimeout(() => { spawnBurst(100, W * 0.3, -20, 5); spawnBurst(100, W * 0.7, -20, 5); }, 400);
+        setTimeout(() => { spawnBurst(80, W / 2, -20, 8); }, 800);
+        setTimeout(() => { spawnBurst(60, W * 0.15, -20, 4); spawnBurst(60, W * 0.85, -20, 4); }, 1200);
+
+        let frame = 0;
+        const maxFrames = 360;
+
+        function drawShape(p) {
+          switch (p.shape) {
+            case "circle":
+              ctx.beginPath();
+              ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+              ctx.fill();
+              break;
+            case "star":
+              ctx.beginPath();
+              for (let i = 0; i < 5; i++) {
+                const a = (i * 4 * Math.PI) / 5 - Math.PI / 2;
+                const r = i === 0 ? p.w / 2 : p.w / 2;
+                ctx[i === 0 ? "moveTo" : "lineTo"](Math.cos(a) * r, Math.sin(a) * r);
+                const b = a + (2 * Math.PI) / 10;
+                ctx.lineTo(Math.cos(b) * r * 0.4, Math.sin(b) * r * 0.4);
+              }
+              ctx.closePath();
+              ctx.fill();
+              break;
+            case "ribbon":
+              ctx.fillRect(-p.w / 2, -1, p.w, 3);
+              ctx.fillRect(-1, -p.h / 2, 3, p.h);
+              break;
+            default:
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          }
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, W, H);
+          frame++;
+          const fadeStart = maxFrames * 0.75;
+          const fade = frame > fadeStart ? 1 - (frame - fadeStart) / (maxFrames - fadeStart) : 1;
+
+          for (const p of pieces) {
+            p.wobble += p.wobbleSpeed;
+            p.x += p.vx + Math.sin(p.wobble) * 1.2;
+            p.y += p.vy;
+            p.vy += 0.06;
+            p.vx *= 0.99;
+            p.rot += p.rv;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rot * Math.PI) / 180);
+            ctx.globalAlpha = Math.max(0, fade * p.opacity);
+            ctx.fillStyle = p.color;
+            drawShape(p);
+            ctx.restore();
+          }
+          if (frame < maxFrames) {
+            requestAnimationFrame(draw);
+          } else {
+            canvas.remove();
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      /* ═══════════════════════════════════════════
+         History Modal
+         ═══════════════════════════════════════════ */
+      function showHistoryModal() {
+        const history = loadHistory();
+        let body = "";
+        if (history.length === 0) {
+          body = `<p class="history-empty">Aún no hay intentos registrados.</p>`;
+        } else {
+          const rows = [...history].reverse().map(h => {
+            const date = new Date(h.timestamp);
+            const fmt = date.toLocaleDateString("es-ES", {
+              day: "2-digit", month: "2-digit", year: "numeric",
+              hour: "2-digit", minute: "2-digit",
+            });
+            return `<tr><td>${fmt}</td><td>${h.aciertos}/${h.total}</td><td>${h.secciones}</td></tr>`;
+          }).join("");
+          body = `
+            <table class="history-table">
+              <thead><tr><th>Fecha</th><th>Resultado</th><th>Secciones</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>
+          `;
+        }
+
+        const overlay = document.createElement("div");
+        overlay.className = "modal-overlay";
+        overlay.innerHTML = `
+          <div class="modal">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3>📋 Historial de intentos (${history.length})</h3>
+            ${body}
+            <div class="modal-actions">
+              ${history.length > 0 ? `<button class="btn btn-primary btn-sm" id="exportCsvBtn">⬇ Exportar CSV</button>` : ""}
+              ${history.length > 0 ? `<button class="btn btn-sm clear-history" id="clearHistoryBtn" style="color:var(--danger);background:none;border:2px solid var(--danger)">Borrar historial</button>` : ""}
+            </div>
+          </div>
+        `;
+        document.body.appendChild(overlay);
+
+        function closeModal() { overlay.remove(); }
+        overlay.querySelector("#modalClose").addEventListener("click", closeModal);
+        overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+
+        const exportBtn = overlay.querySelector("#exportCsvBtn");
+        if (exportBtn) exportBtn.addEventListener("click", () => exportHistoryCsv(history));
+
+        const clearBtn = overlay.querySelector("#clearHistoryBtn");
+        if (clearBtn) clearBtn.addEventListener("click", () => {
+          clearHistory();
+          closeModal();
+        });
+      }
+
+      function exportHistoryCsv(history) {
+        const header = "Fecha,Aciertos,Total,Porcentaje,Secciones";
+        const rows = history.map(h => {
+          const date = new Date(h.timestamp);
+          const fmt = date.toLocaleDateString("es-ES", {
+            day: "2-digit", month: "2-digit", year: "numeric",
+            hour: "2-digit", minute: "2-digit",
+          });
+          const pct = Math.round((h.aciertos / h.total) * 100);
+          const secciones = `"${h.secciones.replace(/"/g, '""')}"`;
+          return `${fmt},${h.aciertos},${h.total},${pct}%,${secciones}`;
+        });
+        const csv = [header, ...rows].join("\n");
+        const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `historial_quiz_codemotion_${new Date().toISOString().slice(0,10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      /* ═══════════════════════════════════════════
+         Init
+         ═══════════════════════════════════════════ */
+      async function init() {
+        try {
+          const res = await fetch("preguntas_evento.json");
+          data = await res.json();
+          renderSetup();
+        } catch (e) {
+          app().innerHTML = `<p style="color:var(--danger)">Error cargando preguntas: ${e.message}</p>`;
+        }
+      }
+
+      init();
+    })();
+  </script>
+</body>
+</html>

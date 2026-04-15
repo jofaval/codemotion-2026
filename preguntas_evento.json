@@ -1,0 +1,1123 @@
+{
+  "evento": "Preguntas tecnológicas",
+  "idioma": "es",
+  "version": "2026-04-15",
+  "secciones": [
+    {
+      "id": "artesania_software_arquitectura",
+      "titulo": "Artesanía del software (arquitectura)",
+      "preguntas": [
+        {
+          "id": "ARQ-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué busca principalmente una buena arquitectura de software?",
+          "opciones": [
+            "Que el sistema sea mantenible, escalable y fácil de entender.",
+            "Que todo esté escrito en el lenguaje más nuevo del mercado.",
+            "Que haya muchas capas aunque no aporten valor.",
+            "Que el código tenga el mayor número posible de patrones."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué significa acoplamiento bajo entre módulos?",
+          "opciones": [
+            "Que los módulos dependen poco entre sí y se pueden cambiar con menos impacto.",
+            "Que todos los módulos comparten la misma base de datos y lógica.",
+            "Que cada módulo conoce los detalles internos de los demás.",
+            "Que los módulos se despliegan siempre en el mismo servidor."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-003",
+          "dificultad": "facil",
+          "pregunta": "¿Para qué sirve la separación de responsabilidades (SRP)?",
+          "opciones": [
+            "Para que cada componente tenga un único motivo de cambio.",
+            "Para que una sola clase resuelva toda la aplicación.",
+            "Para duplicar lógica y evitar dependencias.",
+            "Para reducir el número de archivos del proyecto."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué ventaja aporta una arquitectura en capas?",
+          "opciones": [
+            "Ordena el sistema por funciones y facilita pruebas, mantenimiento y evolución.",
+            "Elimina la necesidad de pruebas automáticas.",
+            "Evita por completo los errores de integración.",
+            "Obliga a usar microservicios desde el primer día."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-005",
+          "dificultad": "media",
+          "pregunta": "¿Cuándo tiene sentido pasar de un monolito a microservicios?",
+          "opciones": [
+            "Cuando hay equipos y dominios claros, necesidades de escalado distinto y dolor real de despliegue en el monolito.",
+            "Cuando una charla en redes dice que es tendencia.",
+            "Siempre al arrancar un MVP, sin excepción.",
+            "Solo cuando el código supera 10.000 líneas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-006",
+          "dificultad": "media",
+          "pregunta": "¿Qué problema intenta resolver DDD (Domain-Driven Design)?",
+          "opciones": [
+            "Alinear el software con el negocio usando un modelo de dominio claro y lenguaje ubicuo.",
+            "Optimizar gráficos 3D en navegadores antiguos.",
+            "Reemplazar cualquier base de datos relacional.",
+            "Evitar reuniones con negocio por completo."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué diferencia hay entre escalado vertical y horizontal?",
+          "opciones": [
+            "Vertical: más recursos a una máquina. Horizontal: más instancias del servicio.",
+            "Vertical: más servidores. Horizontal: más RAM en uno solo.",
+            "No hay diferencia, son sinónimos.",
+            "Vertical aplica solo a frontend y horizontal solo a backend."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-008",
+          "dificultad": "media",
+          "pregunta": "¿Por qué la observabilidad es clave en sistemas distribuidos?",
+          "opciones": [
+            "Porque permite entender qué pasa con métricas, logs y trazas cuando algo falla.",
+            "Porque sustituye completamente los tests de integración.",
+            "Porque reduce a cero la latencia de red.",
+            "Porque hace innecesario el monitoreo en producción."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué es un bounded context en DDD?",
+          "opciones": [
+            "Un límite donde un modelo de dominio tiene significado consistente y reglas propias.",
+            "Una copia exacta de toda la empresa en una sola clase.",
+            "Una técnica para comprimir respuestas HTTP.",
+            "Un framework concreto de JavaScript."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué ventaja ofrece la arquitectura hexagonal (ports and adapters)?",
+          "opciones": [
+            "Aísla el núcleo de negocio de la infraestructura y facilita pruebas y cambios de tecnología.",
+            "Obliga a usar siempre seis microservicios exactos.",
+            "Evita que el dominio tenga reglas de negocio.",
+            "Hace que no sea necesario versionar APIs."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué dice el teorema CAP de forma práctica?",
+          "opciones": [
+            "Ante una partición de red, debes priorizar consistencia o disponibilidad; no puedes maximizar ambas a la vez.",
+            "Que siempre puedes tener consistencia fuerte y disponibilidad total sin coste.",
+            "Que la partición de red es un problema teórico que no ocurre en producción.",
+            "Que CAP solo aplica a aplicaciones monolíticas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué implica consistencia eventual para el diseño funcional?",
+          "opciones": [
+            "Que durante un tiempo los datos pueden no coincidir en todos los nodos y hay que diseñar para ello.",
+            "Que todos los nodos comparten estado idéntico en tiempo real siempre.",
+            "Que no hace falta manejar reintentos ni idempotencia.",
+            "Que la base de datos deja de necesitar índices."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Cuándo usar CQRS puede ser una mala idea?",
+          "opciones": [
+            "Cuando el dominio es simple y la complejidad extra supera cualquier beneficio. Sí, a veces un CRUD gana por KO técnico.",
+            "Nunca; CQRS es obligatorio en cualquier aplicación.",
+            "Solo cuando la app no usa contenedores.",
+            "Solo si la API es pública y usa JSON."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Para qué sirve un ADR (Architecture Decision Record)?",
+          "opciones": [
+            "Para documentar decisiones arquitectónicas, contexto, alternativas y consecuencias.",
+            "Para guardar contraseñas de producción en texto plano.",
+            "Para reemplazar la revisión técnica del equipo.",
+            "Para generar código automáticamente sin validación."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué principio arquitectónico ayuda a desplegar con menos riesgo en producción?",
+          "opciones": [
+            "Diseñar servicios pequeños, desacoplados y con despliegues independientes, apoyados por automatización y rollback.",
+            "Hacer despliegues manuales de madrugada sin monitoreo.",
+            "Publicar directamente en producción sin entorno previo.",
+            "Esperar a que el cliente reporte errores para decidir."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "fullstack_programacion",
+      "titulo": "Fullstack (programación)",
+      "preguntas": [
+        {
+          "id": "FS-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué hace HTTP en una aplicación web?",
+          "opciones": [
+            "Define cómo cliente y servidor intercambian peticiones y respuestas.",
+            "Compila código JavaScript a binario nativo.",
+            "Sustituye la base de datos del backend.",
+            "Convierte CSS en componentes React."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué diferencia principal hay entre frontend y backend?",
+          "opciones": [
+            "Frontend se ejecuta en el cliente; backend en el servidor.",
+            "Frontend solo usa bases de datos; backend solo HTML.",
+            "No hay diferencia real, son dos nombres para lo mismo.",
+            "Frontend siempre está en Python y backend en JavaScript."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-003",
+          "dificultad": "facil",
+          "pregunta": "¿Para qué sirve una API REST?",
+          "opciones": [
+            "Para exponer recursos y operaciones usando HTTP de forma estandarizada.",
+            "Para renderizar estilos CSS en el navegador.",
+            "Para reemplazar completamente JavaScript.",
+            "Para evitar autenticación en aplicaciones móviles."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué problema resuelve una base de datos relacional?",
+          "opciones": [
+            "Guardar y consultar datos estructurados con reglas de integridad.",
+            "Acelerar el renderizado de imágenes en el navegador.",
+            "Eliminar la necesidad de hacer backups.",
+            "Evitar por completo los errores de lógica de negocio."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-005",
+          "dificultad": "media",
+          "pregunta": "¿Qué ventaja aporta paginar resultados en una API?",
+          "opciones": [
+            "Reduce carga de red y mejora tiempos de respuesta al no enviar todo de golpe.",
+            "Impide que el cliente aplique filtros.",
+            "Evita crear índices en base de datos.",
+            "Hace innecesario el control de errores."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-006",
+          "dificultad": "media",
+          "pregunta": "¿Qué es la idempotencia en una API?",
+          "opciones": [
+            "Que repetir una misma operación produce el mismo efecto final.",
+            "Que cada petición genera siempre un nuevo recurso.",
+            "Que solo se pueden usar métodos GET.",
+            "Que la API nunca devuelve códigos de error."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-007",
+          "dificultad": "media",
+          "pregunta": "¿Cuándo conviene usar caché en backend?",
+          "opciones": [
+            "Cuando hay lecturas frecuentes y datos que no cambian cada milisegundo.",
+            "Solo cuando la aplicación está caída.",
+            "Nunca, porque la caché siempre empeora el rendimiento.",
+            "Únicamente en endpoints de login."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué evita usar validación tanto en frontend como en backend?",
+          "opciones": [
+            "Errores de datos y problemas de seguridad por entradas inválidas.",
+            "La necesidad de diseñar interfaces claras.",
+            "Cualquier tipo de bug en producción.",
+            "El uso de pruebas automatizadas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué aporta TypeScript en proyectos fullstack?",
+          "opciones": [
+            "Tipos estáticos que ayudan a detectar errores antes de ejecutar.",
+            "Elimina por completo la necesidad de tests.",
+            "Convierte automáticamente SQL en NoSQL.",
+            "Reduce a cero el tamaño de los bundles."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué es un contrato API en un equipo fullstack?",
+          "opciones": [
+            "Un acuerdo claro sobre formatos, endpoints, errores y versiones entre cliente y servidor.",
+            "Un documento legal para comprar servidores.",
+            "Una librería para escribir CSS modular.",
+            "Una copia de seguridad de la base de datos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué trade-off aparece al elegir consistencia fuerte frente a disponibilidad en sistemas distribuidos?",
+          "opciones": [
+            "Puedes tener datos más coherentes, pero el sistema puede rechazar operaciones en ciertos fallos.",
+            "La aplicación siempre será más rápida y más barata.",
+            "Desaparecen las particiones de red automáticamente.",
+            "No existe ningún trade-off real."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué patrón ayuda a coordinar transacciones entre microservicios sin usar una transacción distribuida clásica?",
+          "opciones": [
+            "Saga, con pasos compensatorios cuando algo falla.",
+            "Singleton global para toda la plataforma.",
+            "MVC aplicado a la base de datos.",
+            "Callback hell, si funciona no lo toques."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué riesgo mitiga el uso de colas y procesamiento asíncrono?",
+          "opciones": [
+            "Picos de carga y acoplamiento temporal entre servicios.",
+            "Errores de sintaxis en tiempo de compilación.",
+            "Falta de estilos responsive en frontend.",
+            "Necesidad de autenticación en APIs."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Por qué versionar una API pública es importante?",
+          "opciones": [
+            "Permite evolucionar sin romper clientes existentes.",
+            "Hace que todas las respuestas sean más rápidas.",
+            "Evita escribir documentación técnica.",
+            "Garantiza que no habrá deuda técnica."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "FS-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué práctica mejora la entrega continua en fullstack?",
+          "opciones": [
+            "Pipelines automáticos con tests, análisis estático y despliegues progresivos.",
+            "Subir cambios directos a producción los viernes por la tarde.",
+            "Desactivar logs para ahorrar disco.",
+            "Confiar solo en pruebas manuales de última hora."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "ia",
+      "titulo": "Inteligencia artificial",
+      "preguntas": [
+        {
+          "id": "IA-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué es, en general, un modelo de IA?",
+          "opciones": [
+            "Un sistema matemático entrenado para detectar patrones y hacer predicciones.",
+            "Un robot físico que siempre tiene forma humana.",
+            "Un lenguaje de programación nuevo.",
+            "Un antivirus especializado en correos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué diferencia hay entre IA y machine learning?",
+          "opciones": [
+            "Machine learning es una parte de la IA centrada en aprender desde datos.",
+            "Son conceptos opuestos y no relacionados.",
+            "IA solo funciona sin datos y machine learning solo con reglas fijas.",
+            "Machine learning es solo para videojuegos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-003",
+          "dificultad": "facil",
+          "pregunta": "¿Qué significa que un modelo esté entrenado?",
+          "opciones": [
+            "Que ajustó sus parámetros usando ejemplos para mejorar su rendimiento.",
+            "Que aprendió a programar solo en producción.",
+            "Que ya no necesita datos nunca más.",
+            "Que puede responder siempre con total certeza."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué es un prompt en modelos generativos?",
+          "opciones": [
+            "La instrucción o contexto que das al modelo para guiar su respuesta.",
+            "Una base de datos vectorial.",
+            "Un tipo de GPU de última generación.",
+            "Un error de compilación en Python."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-005",
+          "dificultad": "media",
+          "pregunta": "¿Qué es una alucinación en un modelo de lenguaje?",
+          "opciones": [
+            "Una respuesta plausible pero incorrecta o inventada.",
+            "Un ataque DDoS al servidor de inferencia.",
+            "Un bug de renderizado en frontend.",
+            "Una mejora automática de precisión."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-006",
+          "dificultad": "media",
+          "pregunta": "¿Para qué sirve RAG (Retrieval-Augmented Generation)?",
+          "opciones": [
+            "Para combinar un modelo generativo con información recuperada de fuentes externas.",
+            "Para entrenar chips de red en tiempo real.",
+            "Para eliminar por completo la necesidad de datos.",
+            "Para convertir cualquier app en blockchain."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué ventaja aporta usar embeddings?",
+          "opciones": [
+            "Representar texto (u otros datos) como vectores para búsqueda semántica y similitud.",
+            "Reducir siempre el coste de nube a cero.",
+            "Sustituir cualquier algoritmo de seguridad.",
+            "Evitar por completo la tokenización."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué riesgo aparece si entrenas con datos sesgados?",
+          "opciones": [
+            "Que el modelo reproduzca o amplifique sesgos en sus resultados.",
+            "Que el modelo deje de usar GPU.",
+            "Que la API REST cambie de versión sola.",
+            "Que desaparezcan los falsos positivos por arte de magia."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué mide típicamente precisión (precision) en clasificación?",
+          "opciones": [
+            "Qué proporción de positivos predichos realmente eran positivos.",
+            "Qué porcentaje total de datos tiene el dataset.",
+            "El tiempo exacto de entrenamiento por época.",
+            "Cuántas features tiene cada registro."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué es MLOps en pocas palabras?",
+          "opciones": [
+            "Prácticas para desplegar, monitorizar y mantener modelos de IA en producción.",
+            "Un framework de CSS para dashboards de datos.",
+            "Un IDE para etiquetar imágenes.",
+            "Una técnica para evitar versiones en modelos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué trade-off es común al ajustar temperatura en un LLM?",
+          "opciones": [
+            "Mayor temperatura: más creatividad y variación, pero más riesgo de respuestas menos precisas.",
+            "Mayor temperatura: menos coste y cero latencia garantizada.",
+            "Menor temperatura: respuestas siempre correctas al 100%.",
+            "La temperatura no afecta en absoluto a la salida."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Por qué evaluar un modelo solo con accuracy puede ser engañoso?",
+          "opciones": [
+            "Porque en clases desbalanceadas puede ocultar un mal rendimiento en la clase importante.",
+            "Porque accuracy solo se usa en regresión lineal.",
+            "Porque accuracy siempre es igual a recall.",
+            "Porque accuracy deja de funcionar con datasets pequeños."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué aporta el fine-tuning frente a usar solo prompting?",
+          "opciones": [
+            "Ajusta el comportamiento del modelo a tareas o estilo específicos con datos del dominio.",
+            "Elimina cualquier necesidad de control de calidad.",
+            "Hace que el modelo nunca alucine.",
+            "Convierte automáticamente texto en video 4K."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué práctica reduce riesgo legal y ético en productos con IA?",
+          "opciones": [
+            "Gobierno de datos, evaluación de sesgos, trazabilidad y revisión humana en casos sensibles.",
+            "Ocultar al usuario que hay IA en el flujo.",
+            "Guardar prompts sin controles ni consentimiento.",
+            "Desactivar logs y auditoría para ir más rápido."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué estrategia suele mejorar calidad en respuestas largas de un LLM?",
+          "opciones": [
+            "Dividir la tarea en pasos, aportar contexto relevante y pedir formato de salida claro.",
+            "Usar un prompt de una sola palabra y esperar milagros.",
+            "Pedir 20 temas a la vez sin prioridad ni contexto.",
+            "Desactivar validación porque total, ya está en modo IA."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "titulo": "Cloud",
+      "preguntas": [
+        {
+          "id": "CLD-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué ventaja clave ofrece cloud frente a montar todo on-premise?",
+          "opciones": [
+            "Escalar recursos bajo demanda sin comprar hardware por adelantado.",
+            "Eliminar por completo cualquier coste operativo.",
+            "No necesitar nunca arquitectura ni diseño.",
+            "Evitar totalmente la seguridad y cumplimiento."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué significa IaaS?",
+          "opciones": [
+            "Infraestructura como servicio: máquinas, red y almacenamiento gestionables.",
+            "Interfaces avanzadas de analítica semántica.",
+            "Integración automática de apps sociales.",
+            "Inteligencia aumentada sin servidores."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-003",
+          "dificultad": "facil",
+          "pregunta": "¿Qué describe mejor PaaS?",
+          "opciones": [
+            "Una plataforma gestionada para desplegar aplicaciones sin administrar tanto servidor.",
+            "Un modelo solo para guardar archivos multimedia.",
+            "Una técnica de cifrado de disco.",
+            "Un sistema de diseño para frontend."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué es serverless en términos prácticos?",
+          "opciones": [
+            "Ejecutar código sin gestionar servidores directamente, pagando por uso.",
+            "No tener backend en absoluto.",
+            "Que la app funcione sin internet.",
+            "Un VPS más barato con nombre moderno."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-005",
+          "dificultad": "media",
+          "pregunta": "¿Por qué usar infraestructura como código (IaC)?",
+          "opciones": [
+            "Para versionar, repetir y auditar cambios de infraestructura de forma fiable.",
+            "Para dejar de usar control de versiones.",
+            "Para evitar cualquier revisión entre pares.",
+            "Para que no existan entornos de pruebas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-006",
+          "dificultad": "media",
+          "pregunta": "¿Qué problema resuelve un balanceador de carga?",
+          "opciones": [
+            "Distribuye tráfico entre instancias y mejora disponibilidad.",
+            "Comprime imágenes automáticamente en frontend.",
+            "Reemplaza bases de datos relacionales.",
+            "Elimina la latencia de red al 100%."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué es autoescalado?",
+          "opciones": [
+            "Ajustar automáticamente el número de recursos según demanda o métricas.",
+            "Subir versión de framework cada noche.",
+            "Reiniciar máquinas cada hora para prevenir bugs.",
+            "Mover la app de proveedor cada semana."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué práctica ayuda a controlar costes cloud?",
+          "opciones": [
+            "Etiquetar recursos, definir presupuestos y apagar entornos no usados.",
+            "Crear instancias grandes por defecto para todo.",
+            "Duplicar backups innecesarios en todas las regiones.",
+            "No monitorizar consumo para no preocuparse."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué aporta una CDN en una app global?",
+          "opciones": [
+            "Servir contenido desde nodos cercanos al usuario para reducir latencia.",
+            "Sustituir completamente el backend.",
+            "Eliminar la necesidad de certificados TLS.",
+            "Hacer consultas SQL más rápidas por defecto."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué significa alta disponibilidad (HA)?",
+          "opciones": [
+            "Diseñar para minimizar caídas mediante redundancia y tolerancia a fallos.",
+            "Tener solo un servidor muy potente.",
+            "Actualizar producción sin pruebas previas.",
+            "Guardar todo en una sola zona para simplificar."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué compromiso suele haber entre multi-región y costes?",
+          "opciones": [
+            "Más resiliencia y menor latencia potencial, pero mayor complejidad y coste operativo.",
+            "Siempre reduce costes y complejidad a la vez.",
+            "Hace innecesaria la observabilidad.",
+            "Solo afecta al frontend, no al backend."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué es el modelo de responsabilidad compartida en cloud?",
+          "opciones": [
+            "El proveedor y el cliente comparten responsabilidades de seguridad según el servicio usado.",
+            "El proveedor asume toda la seguridad y el cliente ninguna.",
+            "Solo aplica a contratos enterprise.",
+            "Es un concepto exclusivo de Kubernetes."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué ventaja real tiene usar despliegues blue-green o canary?",
+          "opciones": [
+            "Reducir riesgo al liberar cambios de forma gradual y con rollback rápido.",
+            "Eliminar totalmente la necesidad de pruebas.",
+            "Asegurar cero errores en producción garantizado.",
+            "Duplicar tráfico para estresar usuarios y aprender."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué indica un buen diseño de disaster recovery?",
+          "opciones": [
+            "RTO y RPO definidos, ensayos periódicos y automatización de recuperación.",
+            "Confiar en que nunca habrá incidentes graves.",
+            "Guardar una única copia local sin pruebas.",
+            "Apagar alarmas para evitar falsas alertas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "CLD-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué práctica cloud-native mejora portabilidad y consistencia entre entornos?",
+          "opciones": [
+            "Contenedores más configuración declarativa y pipelines automatizados.",
+            "Configurar manualmente cada servidor de memoria.",
+            "Evitar cualquier estandarización de runtime.",
+            "Desplegar sin versionar imágenes."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "seguridad",
+      "titulo": "Seguridad",
+      "preguntas": [
+        {
+          "id": "SEC-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué es la autenticación en una aplicación?",
+          "opciones": [
+            "Comprobar quién eres (identidad del usuario).",
+            "Decidir a qué recursos puedes acceder.",
+            "Cifrar automáticamente todos los datos.",
+            "Hacer una copia de seguridad diaria."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué diferencia hay entre autenticación y autorización?",
+          "opciones": [
+            "Autenticación verifica identidad; autorización define permisos.",
+            "Son exactamente lo mismo.",
+            "Autenticación es solo para admins y autorización para usuarios.",
+            "Autorización se hace antes de iniciar sesión."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-003",
+          "dificultad": "facil",
+          "pregunta": "¿Para qué sirve HTTPS?",
+          "opciones": [
+            "Cifrar la comunicación entre cliente y servidor mediante TLS.",
+            "Hacer que la web cargue siempre más rápido.",
+            "Eliminar cualquier vulnerabilidad de backend.",
+            "Evitar usar contraseñas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué práctica mejora seguridad de contraseñas almacenadas?",
+          "opciones": [
+            "Guardar hashes con sal usando algoritmos robustos.",
+            "Guardarlas en texto plano para depurar mejor.",
+            "Encriptarlas con una clave hardcodeada en el código.",
+            "Compartirlas entre servicios para simplificar."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-005",
+          "dificultad": "media",
+          "pregunta": "¿Qué ataque busca ejecutar código SQL malicioso en una consulta?",
+          "opciones": [
+            "SQL Injection.",
+            "Cross-Site Request Forgery.",
+            "Man-in-the-middle.",
+            "Clickjacking."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-006",
+          "dificultad": "media",
+          "pregunta": "¿Cómo reducir riesgo de SQL Injection?",
+          "opciones": [
+            "Usar consultas parametrizadas y validar entradas.",
+            "Concatenar strings cuidadosamente a mano.",
+            "Ocultar errores de base de datos sin más.",
+            "Cambiar el puerto de la base de datos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué describe mejor un ataque XSS?",
+          "opciones": [
+            "Inyección de scripts en páginas vistas por otros usuarios.",
+            "Bloquear red con tráfico masivo.",
+            "Robo físico de un servidor.",
+            "Cifrado de discos para secuestro."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué beneficio aporta MFA (autenticación multifactor)?",
+          "opciones": [
+            "Añade una capa extra aunque la contraseña se vea comprometida.",
+            "Sustituye totalmente la necesidad de monitorización.",
+            "Elimina al 100% cualquier phishing.",
+            "Permite usar contraseñas débiles sin riesgo."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué significa principio de mínimo privilegio?",
+          "opciones": [
+            "Dar solo los permisos estrictamente necesarios para cada rol o servicio.",
+            "Dar acceso admin para evitar tickets de soporte.",
+            "Eliminar todos los controles de acceso.",
+            "Usar una cuenta compartida para todo el equipo."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-010",
+          "dificultad": "media",
+          "pregunta": "¿Por qué rotar secretos y claves periódicamente?",
+          "opciones": [
+            "Reduce ventana de exposición si una credencial se filtra.",
+            "Porque mejora automáticamente el rendimiento de la app.",
+            "Para evitar usar gestores de secretos.",
+            "Solo por cumplimiento, sin impacto real."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué enfoque describe mejor Zero Trust?",
+          "opciones": [
+            "No confiar por defecto en ningún usuario o dispositivo; verificar continuamente.",
+            "Confiar siempre en todo lo que está dentro de la red corporativa.",
+            "Desactivar autenticación en redes internas.",
+            "Permitir acceso global para facilitar colaboración."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué práctica fortalece la cadena de suministro de software?",
+          "opciones": [
+            "Escanear dependencias, fijar versiones y verificar firmas/procedencia.",
+            "Instalar paquetes sin revisar para ir más rápido.",
+            "Usar siempre la última beta en producción.",
+            "Desactivar auditorías automáticas para reducir ruido."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué aporta un plan de respuesta a incidentes?",
+          "opciones": [
+            "Roles, pasos y comunicación definidos para actuar rápido y con menos impacto.",
+            "Garantiza que nunca ocurran incidentes.",
+            "Reemplaza cualquier backup o monitorización.",
+            "Evita reportar incidentes a clientes o reguladores."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Por qué conviene segmentar red y aislar servicios críticos?",
+          "opciones": [
+            "Limita el movimiento lateral de un atacante si compromete un sistema.",
+            "Hace innecesario usar firewalls.",
+            "Duplica por defecto el ancho de banda.",
+            "Reduce a cero el riesgo humano."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué enfoque práctico reduce riesgo de fuga de datos en desarrollo?",
+          "opciones": [
+            "Clasificación de datos, entornos separados y uso de datos anonimizados en pruebas.",
+            "Copiar producción completa en portátiles personales.",
+            "Publicar tokens de prueba en repos públicos, total son de test.",
+            "Enviar logs con datos sensibles por correo interno."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "anecdotas_curiosas_it",
+      "titulo": "Anécdotas curiosas IT",
+      "preguntas": [
+        {
+          "id": "ANE-001",
+          "dificultad": "facil",
+          "pregunta": "¿De dónde viene el término “bug” en informática?",
+          "opciones": [
+            "De un caso famoso donde encontraron una polilla en un relé de un computador.",
+            "De una marca de compiladores de los años 90.",
+            "De un protocolo de red militar.",
+            "De una librería de JavaScript para depuración."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué significa “Y2K” (efecto 2000)?",
+          "opciones": [
+            "Un posible fallo por guardar años con dos dígitos al pasar a 2000.",
+            "Una versión de Windows que nunca salió.",
+            "Un malware que borraba discos SSD.",
+            "Un estándar de cifrado cuántico."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-003",
+          "dificultad": "facil",
+          "pregunta": "¿Qué caracterizaba al “correo del príncipe nigeriano” en phishing clásico?",
+          "opciones": [
+            "Promesas de dinero fácil a cambio de datos o adelantos.",
+            "Actualizaciones oficiales de sistemas operativos.",
+            "Invitaciones a conferencias técnicas verificadas.",
+            "Mensajes internos firmados por RRHH."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-004",
+          "dificultad": "facil",
+          "pregunta": "¿Qué pasó con el primer tweet de la historia?",
+          "opciones": [
+            "Fue un “just setting up my twttr” y se convirtió en pieza histórica de internet.",
+            "Era un hilo técnico sobre Kubernetes.",
+            "Se publicó como mensaje cifrado militar.",
+            "Nunca existió, fue una leyenda urbana."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-005",
+          "dificultad": "media",
+          "pregunta": "¿Qué caída famosa de servicios online en 2021 afectó a millones por unas horas?",
+          "opciones": [
+            "La caída global de varias plataformas por cambios de configuración de red.",
+            "La desconexión completa de internet mundial por 3 días.",
+            "El apagón total de todos los proveedores cloud simultáneamente.",
+            "Un fallo de DNS que duró solo 2 segundos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-006",
+          "dificultad": "media",
+          "pregunta": "¿Qué aprendizaje dejaron varios incidentes por “copiar y pegar en producción”?",
+          "opciones": [
+            "Automatizar despliegues y revisar cambios reduce errores humanos críticos.",
+            "Es mejor no documentar para ir más rápido.",
+            "Las revisiones por pares empeoran la calidad.",
+            "Producción es el mejor entorno para probar ideas nuevas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué mito desmonta la frase “funciona en mi máquina”?",
+          "opciones": [
+            "Que reproducibilidad y entornos consistentes son clave para evitar sorpresas.",
+            "Que producción debería usar versiones aleatorias.",
+            "Que no hace falta CI/CD si el portátil va bien.",
+            "Que Docker es solo para empresas gigantes."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué anécdota real ocurre más de lo que parece en soporte IT?",
+          "opciones": [
+            "El cable no estaba conectado… y sí, se arregló “reiniciando” con cariño.",
+            "Los ordenadores se reparan solos al abrir 20 pestañas.",
+            "El modo avión mejora el Wi-Fi de escritorio.",
+            "Formatear siempre es el primer paso recomendado."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué enseñanza dejó el apagón de servicios por expiración de certificados?",
+          "opciones": [
+            "Automatizar renovación y alertas de certificados es imprescindible.",
+            "Los certificados solo importan en bancos.",
+            "Es mejor usar certificados vencidos para ahorrar.",
+            "TLS ya no se usa en aplicaciones modernas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué error curioso ha provocado caídas en sistemas reales?",
+          "opciones": [
+            "Unidades mal convertidas (segundos vs milisegundos) en configuración crítica.",
+            "Usar nombres claros en variables.",
+            "Tener logs estructurados.",
+            "Aplicar parches de seguridad a tiempo."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué refleja el caso de caídas por dependencia de un único proveedor externo?",
+          "opciones": [
+            "La importancia de analizar riesgo de terceros y diseñar planes de contingencia.",
+            "Que las integraciones externas siempre son seguras y estables.",
+            "Que no hace falta monitorizar APIs de terceros.",
+            "Que el vendor lock-in no tiene impacto real."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué lección deja el “Knight Capital incident” (2012) en despliegues?",
+          "opciones": [
+            "Un despliegue defectuoso sin controles puede causar pérdidas enormes en minutos.",
+            "Los hotfix en viernes son siempre recomendables.",
+            "Los mercados financieros toleran errores sin impacto.",
+            "Las pruebas en staging son opcionales en sistemas críticos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué muestran los incidentes causados por “feature flags” mal gestionadas?",
+          "opciones": [
+            "Que hay que gobernar flags: expiración, propiedad, pruebas y rollback.",
+            "Que los feature flags son inútiles por definición.",
+            "Que activar todo en producción siempre mejora UX.",
+            "Que la observabilidad estorba en despliegues rápidos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-014",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué patrón se repite en muchas “post-mortem” de grandes incidentes?",
+          "opciones": [
+            "Pequeños fallos encadenados + falta de visibilidad + respuesta tardía.",
+            "Un único error imposible de detectar.",
+            "Demasiada documentación técnica.",
+            "Exceso de automatización sin intervención humana."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué moraleja técnica resume mejor estas anécdotas IT?",
+          "opciones": [
+            "La fiabilidad no es suerte: se diseña con prácticas, cultura y aprendizaje continuo.",
+            "Si compila, ya está perfecto para producción.",
+            "Los incidentes son inevitables, así que mejor no medir nada.",
+            "La mejor monitorización sigue siendo cruzar los dedos."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    }
+  ]
+}
