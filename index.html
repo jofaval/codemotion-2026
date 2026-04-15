@@ -80,15 +80,20 @@
 
     /* ── Setup screen ── */
     .section-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: .75rem;
       margin-bottom: 1.5rem;
     }
 
+    .section-grid > .section-card {
+      width: calc(33.333% - .5rem);
+    }
+
     @media (max-width: 600px) {
-      .section-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .section-grid > .section-card {
+        width: calc(50% - .375rem);
       }
     }
 
@@ -504,60 +509,10 @@
         return a;
       }
 
-      function variantLength(text) {
-        const clean = text.trim().replace(/\s+/g, " ");
-        const roll = Math.random();
-        if (roll < 0.45) return clean;
-
-        if (roll > 0.9 && clean.length > 85) {
-          const short = clean.split(",")[0].trim();
-          if (short.length >= 35) return short.endsWith(".") ? short : `${short}.`;
-        }
-
-        if (roll < 0.75) {
-          return clean.replace(/\.$/, "") + " en la práctica.";
-        }
-
-        return clean.replace(/\.$/, "") + ", en contextos reales de producto.";
-      }
-
-      function plausibleFromCorrect(correctText) {
-        const base = correctText.trim().replace(/\.$/, "");
-        const variants = [
-          `${base}, pero únicamente si todo permanece en un único servicio.`,
-          `${base}, aunque suele aplicarse solo en escenarios muy acotados.`,
-          `${base}, siempre que no haya cambios frecuentes en producción.`
-        ];
-        return variants[Math.floor(Math.random() * variants.length)];
-      }
-
-      const TRUE_BUT_OFF_TOPIC = [
-        "Versionar APIs y monitorizar en producción son buenas prácticas de ingeniería.",
-        "La comunicación clara entre negocio y tecnología reduce errores de implementación.",
-        "Automatizar pruebas y despliegues suele mejorar la estabilidad del producto.",
-        "La documentación técnica útil acelera el onboarding de nuevos miembros del equipo."
-      ];
-
       function prepareOptionsForQuestion(q) {
-        const correct = q.opciones[q.respuesta_correcta];
-        const wrong = q.opciones.filter((_, idx) => idx !== q.respuesta_correcta);
-        const adjustedWrong = [...wrong];
-
-        if (adjustedWrong.length && Math.random() < 0.35) {
-          const idx = Math.floor(Math.random() * adjustedWrong.length);
-          adjustedWrong[idx] = plausibleFromCorrect(correct);
-        }
-
-        if (adjustedWrong.length && Math.random() < 0.28) {
-          const idx = Math.floor(Math.random() * adjustedWrong.length);
-          adjustedWrong[idx] = TRUE_BUT_OFF_TOPIC[Math.floor(Math.random() * TRUE_BUT_OFF_TOPIC.length)];
-        }
-
-        const preparedCorrect = variantLength(correct);
-        const preparedWrong = adjustedWrong.map(variantLength);
-        const shuffledOptions = shuffle([preparedCorrect, ...preparedWrong]);
-        const correctIndex = shuffledOptions.indexOf(preparedCorrect);
-
+        const correctText = q.opciones[q.respuesta_correcta];
+        const shuffledOptions = shuffle(q.opciones);
+        const correctIndex = shuffledOptions.indexOf(correctText);
         return { shuffledOptions, correctIndex };
       }
 
@@ -586,6 +541,7 @@
         artesania_software_arquitectura: "🏛️",
         fullstack_programacion: "💻",
         ia: "🤖",
+        genai_ia_agentica: "🧠",
         cloud: "☁️",
         seguridad: "🔒",
         anecdotas_curiosas_it: "🎲",
@@ -607,17 +563,20 @@
           }
         }
 
-        // Balanced pick: ~50% difícil, ~50% fácil+media (adjusted to pool availability)
+        // Balanced pick: 50% fácil, 25% media, 25% difícil (adjusted to pool availability)
+        const easy = shuffle(pool.filter(q => q.dificultad === "facil"));
+        const medium = shuffle(pool.filter(q => q.dificultad === "media"));
         const hard = shuffle(pool.filter(q => q.dificultad === "dificil"));
-        const easyMed = shuffle(pool.filter(q => q.dificultad !== "dificil"));
 
-        const targetHard = Math.min(Math.ceil(numQuestions / 2), hard.length);
-        const targetEasyMed = Math.min(numQuestions - targetHard, easyMed.length);
-        // If one bucket fell short, fill from the other
+        const targetEasy = Math.min(Math.round(numQuestions * 0.5), easy.length);
+        const targetMedium = Math.min(Math.round(numQuestions * 0.25), medium.length);
+        const targetHard = Math.min(numQuestions - targetEasy - targetMedium, hard.length);
+
+        const fromEasy = easy.slice(0, targetEasy);
+        const fromMedium = medium.slice(0, targetMedium);
         const fromHard = hard.slice(0, targetHard);
-        const fromEasyMed = easyMed.slice(0, targetEasyMed);
-        let picked = [...fromHard, ...fromEasyMed];
-        // Fill remaining if one side had fewer questions
+        let picked = [...fromEasy, ...fromMedium, ...fromHard];
+        // Fill remaining if any bucket had fewer questions
         const remaining = numQuestions - picked.length;
         if (remaining > 0) {
           const usedIds = new Set(picked.map(q => q.id));
@@ -647,6 +606,7 @@
       function renderSetup() {
         selectedSections = [];
         const sections = data.secciones;
+        const totalQuestions = sections.reduce((acc, section) => acc + section.preguntas.length, 0);
         app().innerHTML = `
           <div class="quiz-screen fade-in" style="text-align:center">
             <img src="./codemotion-logo.png" alt="Logo Codemotion" class="logo" />
@@ -667,7 +627,7 @@
 
             <div class="config-row">
               <label for="numQ">Número de preguntas:</label>
-              <input type="number" id="numQ" min="1" max="90" value="${numQuestions}" />
+              <input type="number" id="numQ" min="1" max="${totalQuestions}" value="${numQuestions}" />
             </div>
 
             <p class="error-msg" id="setupError"></p>
@@ -733,7 +693,7 @@
          ═══════════════════════════════════════════ */
       function renderQuestion() {
         const q = quizQuestions[currentIndex];
-        const progress = ((currentIndex) / quizQuestions.length) * 100;
+        const progress = ((currentIndex + 1) / quizQuestions.length) * 100;
 
         app().innerHTML = `
           <div class="quiz-screen fade-in">

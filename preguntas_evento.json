@@ -186,6 +186,30 @@
             "Esperar a que el cliente reporte errores para decidir."
           ],
           "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-016",
+          "dificultad": "media",
+          "pregunta": "¿Qué aporta aplicar el principio “12-factor app” en servicios modernos?",
+          "opciones": [
+            "Favorece configuraciones externas, despliegues repetibles y paridad entre entornos.",
+            "Obliga a usar un único proveedor cloud para siempre.",
+            "Evita completamente la necesidad de observabilidad.",
+            "Sustituye el modelado de dominio por variables de entorno."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ARQ-017",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué trade-off suele aparecer al introducir event-driven architecture?",
+          "opciones": [
+            "Se gana desacoplamiento, pero aumenta la complejidad operativa y de trazabilidad extremo a extremo.",
+            "Se elimina por completo la necesidad de diseñar contratos entre servicios.",
+            "Todas las operaciones pasan a ser transacciones ACID distribuidas sin coste.",
+            "Desaparecen los problemas de reintentos, orden y duplicados."
+          ],
+          "respuesta_correcta": 0
         }
       ]
     },
@@ -556,6 +580,240 @@
             "Usar un prompt de una sola palabra y esperar milagros.",
             "Pedir 20 temas a la vez sin prioridad ni contexto.",
             "Desactivar validación porque total, ya está en modo IA."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-016",
+          "dificultad": "media",
+          "pregunta": "¿Qué es una “hallucination” en modelos generativos?",
+          "opciones": [
+            "Una respuesta presentada con seguridad que contiene datos incorrectos o inventados.",
+            "Un error de red al conectar con la API del modelo.",
+            "La compresión de embeddings para ahorrar memoria.",
+            "Un modo especial de razonamiento matemático exacto."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-017",
+          "dificultad": "media",
+          "pregunta": "¿Qué beneficio aporta evaluar un sistema de IA con un conjunto de test fijo (benchmark interno)?",
+          "opciones": [
+            "Permite comparar versiones de forma consistente y detectar regresiones de calidad.",
+            "Garantiza precisión perfecta en cualquier dominio y lenguaje.",
+            "Hace innecesario revisar muestras reales con usuarios.",
+            "Sustituye por completo la observabilidad en producción."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-018",
+          "dificultad": "dificil",
+          "pregunta": "En RAG, ¿qué riesgo aparece si la recuperación trae contexto irrelevante?",
+          "opciones": [
+            "El modelo puede responder peor por “contaminación” del contexto y mezclar señales contradictorias.",
+            "Se reduce automáticamente el coste de tokens sin impacto en calidad.",
+            "La latencia baja siempre porque se procesan menos documentos.",
+            "Desaparece el riesgo de alucinación por definición."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "IA-019",
+          "dificultad": "dificil",
+          "pregunta": "¿Cuál es una práctica robusta para gobernar prompts en un producto con varios equipos?",
+          "opciones": [
+            "Versionarlos, medir su rendimiento y tratar cambios como código con revisión y despliegue controlado.",
+            "Guardar todos los prompts en chats privados sin historial compartido.",
+            "Cambiar prompts en caliente sin trazabilidad para iterar más rápido.",
+            "Evitar pruebas A/B porque sesgan demasiado los resultados."
+          ],
+          "respuesta_correcta": 0
+        }
+      ]
+    },
+    {
+      "id": "genai_ia_agentica",
+      "titulo": "GenAI e IA Agéntica",
+      "preguntas": [
+        {
+          "id": "GAI-001",
+          "dificultad": "facil",
+          "pregunta": "¿Qué ventaja ofrece usar GenAI en una fase de prototipado?",
+          "opciones": [
+            "Permite validar ideas y flujos rápidamente antes de invertir en implementación completa.",
+            "Sustituye por completo la necesidad de hablar con usuarios.",
+            "Garantiza que el prototipo será escalable en producción sin cambios.",
+            "Evita cualquier deuda técnica desde el día uno."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-002",
+          "dificultad": "facil",
+          "pregunta": "¿Qué criterio práctico ayuda a elegir entre ChatGPT, Claude, Codex o Lovable para un primer prototipo?",
+          "opciones": [
+            "Alinear la herramienta con el caso de uso, coste, calidad de salida y velocidad de iteración.",
+            "Elegir siempre la que tenga más menciones en redes ese mes.",
+            "Usar la misma en todos los proyectos aunque el contexto cambie.",
+            "Decidir solo por el nombre de la marca."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-003",
+          "dificultad": "facil",
+          "pregunta": "¿Qué describe mejor el prompt engineering?",
+          "opciones": [
+            "Diseñar instrucciones, contexto y ejemplos para obtener respuestas más útiles y consistentes.",
+            "Entrenar desde cero un modelo fundacional propio en cada proyecto.",
+            "Aumentar RAM del servidor para que el modelo responda más rápido.",
+            "Convertir automáticamente cualquier texto en código de producción."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-004",
+          "dificultad": "facil",
+          "pregunta": "¿Para qué sirve un “system prompt” en un asistente de IA?",
+          "opciones": [
+            "Para fijar comportamiento, tono y límites globales del asistente.",
+            "Para reemplazar toda la lógica de negocio del backend.",
+            "Para cifrar automáticamente las respuestas del modelo.",
+            "Para desactivar los controles de seguridad del proveedor."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-005",
+          "dificultad": "facil",
+          "pregunta": "¿Qué práctica suele mejorar prompts complejos?",
+          "opciones": [
+            "Separar contexto, tarea y formato de salida con instrucciones claras y delimitadores.",
+            "Pedir varias tareas ambiguas en una sola frase corta.",
+            "Eliminar restricciones para que el modelo improvise más.",
+            "No indicar audiencia ni objetivo final."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-006",
+          "dificultad": "media",
+          "pregunta": "¿Cuándo conviene usar un asistente de código (como Codex) frente a un generador de apps no-code?",
+          "opciones": [
+            "Cuando necesitas control fino del código, integración técnica y mantenibilidad a medio plazo.",
+            "Solo cuando el proyecto no tiene frontend.",
+            "Siempre, incluso para validar ideas en una tarde.",
+            "Nunca, porque los asistentes no-code cubren todos los casos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-007",
+          "dificultad": "media",
+          "pregunta": "¿Qué diferencia principal hay entre un chatbot clásico y una IA agéntica?",
+          "opciones": [
+            "La IA agéntica planifica pasos y puede ejecutar acciones con herramientas para cumplir objetivos.",
+            "La IA agéntica solo responde más rápido, pero no hace nada distinto.",
+            "No hay diferencia; ambos conceptos son idénticos.",
+            "La IA agéntica funciona sin prompts ni contexto."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-008",
+          "dificultad": "media",
+          "pregunta": "¿Qué aporta el tool calling en un agente?",
+          "opciones": [
+            "Permite consultar sistemas externos y ejecutar funciones para pasar de texto a acciones concretas.",
+            "Impide al agente usar APIs para evitar latencia.",
+            "Convierte cualquier respuesta en una transacción ACID distribuida.",
+            "Hace innecesario validar entradas y salidas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-009",
+          "dificultad": "media",
+          "pregunta": "¿Qué riesgo aparece al añadir memoria de conversación larga en asistentes?",
+          "opciones": [
+            "Arrastrar contexto obsoleto o sensible y degradar precisión si no se gobierna bien.",
+            "Reducir siempre el coste de tokens en cualquier escenario.",
+            "Eliminar por completo la necesidad de autorización por usuario.",
+            "Garantizar consistencia factual absoluta en todas las respuestas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-010",
+          "dificultad": "media",
+          "pregunta": "¿Qué práctica mejora la comparación entre proveedores de LLM para un mismo caso?",
+          "opciones": [
+            "Ejecutar el mismo set de prompts y métricas sobre cada proveedor para medir calidad y coste.",
+            "Cambiar prompts en cada prueba para “aprovechar” fortalezas ocultas.",
+            "Evaluar solo con una demo interna sin criterio objetivo.",
+            "Elegir el modelo más grande y asumir que siempre será mejor."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-011",
+          "dificultad": "dificil",
+          "pregunta": "¿Cuál es un reto típico en arquitecturas multiagente?",
+          "opciones": [
+            "Coordinar responsabilidades, evitar bucles de delegación y mantener trazabilidad de decisiones.",
+            "Que los agentes no puedan trabajar en paralelo por diseño.",
+            "Que todos los agentes compartan siempre el mismo estado global exacto.",
+            "Que desaparezca la necesidad de observabilidad."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-012",
+          "dificultad": "dificil",
+          "pregunta": "¿Cómo se mitiga mejor el prompt injection cuando un agente consume contenido externo?",
+          "opciones": [
+            "Separando instrucciones de datos no confiables, aplicando validación y restringiendo capacidades sensibles.",
+            "Permitiendo que cualquier texto externo redefina el system prompt.",
+            "Desactivando logs para reducir exposición del ataque.",
+            "Confiando en que el modelo siempre distinguirá intención maliciosa sin reglas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-013",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué enfoque de evaluación es más sólido para un agente en producción?",
+          "opciones": [
+            "Combinar tests offline, métricas online y revisión de casos reales con alertas de regresión.",
+            "Medir solo latencia y asumir que calidad se mantiene estable.",
+            "Evaluar una vez al lanzar y no volver a medir.",
+            "Confiar únicamente en feedback informal de demos internas."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-014",
+          "dificultad": "dificil",
+          "pregunta": "En un flujo agéntico que ejecuta acciones reales, ¿qué control reduce más el riesgo operativo?",
+          "opciones": [
+            "Definir permisos mínimos, confirmaciones explícitas y trazas auditables para acciones críticas.",
+            "Dar acceso administrador al agente para evitar bloqueos.",
+            "Permitir ejecución automática sin límites para acelerar entregas.",
+            "Quitar al usuario del circuito incluso en operaciones irreversibles."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "GAI-015",
+          "dificultad": "dificil",
+          "pregunta": "¿Qué señal indica que un prototipo GenAI está listo para pasar a producto?",
+          "opciones": [
+            "Cumple objetivos de negocio y calidad bajo métricas repetibles, con coste y riesgos controlados.",
+            "La demo impresionó al equipo una vez, aunque no haya mediciones.",
+            "Funciona con prompts manuales del creador, aunque nadie más pueda reproducirlo.",
+            "Responde rápido, sin importar precisión ni seguridad."
           ],
           "respuesta_correcta": 0
         }
@@ -930,6 +1188,18 @@
             "Enviar logs con datos sensibles por correo interno."
           ],
           "respuesta_correcta": 0
+        },
+        {
+          "id": "SEC-016",
+          "dificultad": "media",
+          "pregunta": "¿Qué aporta aplicar “security headers” (CSP, HSTS, X-Frame-Options) en aplicaciones web?",
+          "opciones": [
+            "Reduce superficie de ataque en el navegador y dificulta exploits comunes como XSS o clickjacking.",
+            "Elimina la necesidad de autenticación y autorización.",
+            "Sustituye completamente los tests de seguridad.",
+            "Impide cualquier ataque en backend por definición."
+          ],
+          "respuesta_correcta": 0
         }
       ]
     },
@@ -1114,6 +1384,42 @@
             "Si compila, ya está perfecto para producción.",
             "Los incidentes son inevitables, así que mejor no medir nada.",
             "La mejor monitorización sigue siendo cruzar los dedos."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-016",
+          "dificultad": "facil",
+          "pregunta": "¿Qué aprendizaje dejó el incidente de “Knight Capital” (2012) en despliegues financieros?",
+          "opciones": [
+            "Que un despliegue defectuoso sin controles puede causar pérdidas millonarias en minutos.",
+            "Que los mercados se recuperan solos sin necesidad de rollback.",
+            "Que en sistemas críticos no hace falta entorno de pruebas.",
+            "Que lo importante es desplegar rápido aunque no haya validación."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-017",
+          "dificultad": "media",
+          "pregunta": "¿Qué enseñó el caso de una caída por expiración de certificado no renovado a tiempo?",
+          "opciones": [
+            "Que hay que automatizar renovaciones y alertas antes del vencimiento para evitar interrupciones evitables.",
+            "Que los certificados solo son necesarios en banca online.",
+            "Que TLS no aporta valor si la app usa contraseña fuerte.",
+            "Que renovar manualmente en el último minuto siempre es suficiente."
+          ],
+          "respuesta_correcta": 0
+        },
+        {
+          "id": "ANE-018",
+          "dificultad": "dificil",
+          "pregunta": "¿Por qué muchos incidentes “curiosos” acaban siendo fallos de proceso más que de código puro?",
+          "opciones": [
+            "Porque sin ownership claro, checklist y observabilidad, errores pequeños escalan rápido a incidentes graves.",
+            "Porque el código rara vez influye en lo que ocurre en producción.",
+            "Porque documentar runbooks incrementa directamente la latencia.",
+            "Porque los procesos son incompatibles con equipos ágiles."
           ],
           "respuesta_correcta": 0
         }
